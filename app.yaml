@@ -1,0 +1,6 @@
+runtime: go
+api_version: go1            #only version available for Go apps
+
+handlers:                   #define url routing -> can route to functions, static files, etc.
+- url: /.*                  #every url should be hangled by go app
+  script: go_app
