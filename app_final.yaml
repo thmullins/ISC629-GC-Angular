@@ -1,0 +1,20 @@
+runtime: go
+api_version: go1            #only version available for Go apps
+
+handlers:                   #define url routing -> can route to functions, static files, etc.
+
+- url: /
+  static_files: angular-seed/app/index.html #rerout to static file
+  upload: angular-seed/app/(.*\.html)    
+
+- url: /components
+  static_dir: angular-seed/app/components   #routing to a directory
+
+- url: /view1
+  static_dir: angular-seed/app/view1
+
+- url: /view2
+  static_dir: angular-seed/app/view2
+
+- url: /.*                  #every url should be hangled by go app
+  script: go_app

@@ -1,0 +1,87 @@
+Quick App Stack
+Google Cloud AppEngine, Go, AngularJS
+
+
+Homework:
+Create a Google Cloud account
+	https://cloud.google.com
+	try free
+	follow instructions to create account and start a free trial
+
+
+Workshop:
+
+We will be making changes to pre-written files during the Workshop.
+
+The final versions of these files are in the Team Drive
+Team Drive-> AngularJS & Google Cloud-> app.yaml and index.html
+
+create an app
+	appengine.google.com
+	select app AppEngine
+	select language -> go
+	select region
+	we will not continue with the hello world tutorial
+		once the backend of your app it created, you may cancel the tutorial
+	activate cloud shell
+
+set up configuration and Go Application files
+In cloud shell
+	$ git clone https://github.com/thmullins/ISC629-GC-Angular.git
+	check for saved files with >ls
+	$ cd ISC629-GC-Angular/
+
+launch code editor to view source code
+
+In cloud shell
+	you may check the app locally with
+	$ go run *.go
+	click web preview-> preview on port 8080
+	
+	Deploy app
+	$ gcloud app create
+		your application should have already been created
+		if so, this will throw an error
+	$ gcloud app deploy --project <project name>
+		<project name> is the unique name displayed in yellow on the cloud shell
+		when asked to continue, enter yes
+	$ gcloud app browse
+		follow link to view app
+		should be <projectname>.appspot.com
+		you should see your Hello World message
+In browser
+	<projectname>.appspot.com/addWords
+		this adds words to the DataStore
+		you may view them by going to the data store on the Google Cloud Platform
+	<projectname>.appspot.com/getWords
+		this queries the DB
+		the added words should displpay in the browser
+
+
+Web App with AngularJS
+
+copy the angular-seed source code to your directory
+	$ git clone https://github.com/angular/angular-seed.git
+		you may view the files in the code editor
+open code editor
+	edit app.yaml to rerout http requests to static files (final code in Team Drive)
+	$ gcloud app deploy --project <project name>
+	$ gcloud app browse
+		you should see view 1 and view 2
+		angular app is working
+		if you do not see any changes in the browser, it is probably loading the page from cache
+			In Chrome
+			right click page-> inspect element
+			right click refresh-> clear cache and hard reload
+		you may also access specific versions
+			go to AppEngine->versions-> click most recent version
+
+2-way binding with AngularJS
+
+simplify index.html
+	edit in code editor
+	add controller and message (final code in Team Drive)
+In cloud shell
+	$ gcloud app deploy --project <project name>
+	$ gcloud app browse
+		as you edit the text box (model) the text displayed should change (view)
